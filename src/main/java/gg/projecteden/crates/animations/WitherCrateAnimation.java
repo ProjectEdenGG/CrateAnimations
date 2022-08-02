@@ -1,6 +1,7 @@
 package gg.projecteden.crates.animations;
 
 import org.bukkit.Location;
+import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.util.Consumer;
@@ -10,7 +11,7 @@ import java.util.function.BiFunction;
 
 public class WitherCrateAnimation extends CrateAnimation {
 
-	public WitherCrateAnimation(Entity baseEntity, BiFunction<Location, Consumer<Item>, Item> spawnItemHook) {
+	public WitherCrateAnimation(ArmorStand baseEntity, BiFunction<Location, Consumer<Item>, Item> spawnItemHook) {
 		super(baseEntity, spawnItemHook);
 	}
 
