@@ -1,4 +1,4 @@
-package crates.util;
+package gg.projecteden.crates.util;
 
 import org.bukkit.Location;
 import org.bukkit.Sound;

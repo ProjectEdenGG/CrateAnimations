@@ -1,6 +1,10 @@
-package crates;
+package gg.projecteden.crates;
 
-import crates.animations.*;
+import gg.projecteden.crates.animations.GemCrafterAnimation;
+import gg.projecteden.crates.animations.MysteryCrateAnimation;
+import gg.projecteden.crates.animations.VoteCrateAnimation;
+import gg.projecteden.crates.animations.WeeklyWakkaCrateAnimation;
+import gg.projecteden.crates.animations.WitherCrateAnimation;
 import gg.projecteden.crates.api.CrateAnimationsAPI;
 import gg.projecteden.crates.api.models.CrateAnimation;
 import gg.projecteden.crates.api.models.CrateAnimationType;

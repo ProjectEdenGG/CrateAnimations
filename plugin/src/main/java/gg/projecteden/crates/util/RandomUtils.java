@@ -1,4 +1,4 @@
-package crates.util;
+package gg.projecteden.crates.util;
 
 import java.util.ArrayList;
 import java.util.List;

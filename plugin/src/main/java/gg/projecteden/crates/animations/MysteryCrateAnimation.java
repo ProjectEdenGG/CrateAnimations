@@ -1,6 +1,6 @@
-package crates.animations;
+package gg.projecteden.crates.animations;
 
-import crates.models.CrateAnimationImpl;
+import gg.projecteden.crates.models.CrateAnimationImpl;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;

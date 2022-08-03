@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
-    implementation(project(":api"))
+    compileOnly("gg.projecteden.crates:api:1.0.3-SNAPSHOT")
 }
 
 tasks {

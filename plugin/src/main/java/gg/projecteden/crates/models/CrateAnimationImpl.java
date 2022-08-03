@@ -1,9 +1,9 @@
-package crates.models;
+package gg.projecteden.crates.models;
 
-import crates.CrateAnimations;
-import crates.util.LocationModifier;
-import crates.util.VectorUtils;
+import gg.projecteden.crates.CrateAnimations;
 import gg.projecteden.crates.api.models.CrateAnimation;
+import gg.projecteden.crates.util.LocationModifier;
+import gg.projecteden.crates.util.VectorUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;

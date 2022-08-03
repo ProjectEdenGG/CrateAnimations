@@ -16,6 +16,10 @@ allprojects  {
             name = "sonatype"
             url = uri("https://oss.sonatype.org/content/groups/public/")
         }
+        maven {
+            name = "projecteden-snapshots"
+            url = uri("https://sonatype.projecteden.gg/repository/maven-snapshots/")
+        }
     }
 }
 

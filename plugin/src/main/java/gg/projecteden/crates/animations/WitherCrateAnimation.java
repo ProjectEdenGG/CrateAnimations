@@ -1,6 +1,6 @@
-package crates.animations;
+package gg.projecteden.crates.animations;
 
-import crates.models.CrateAnimationImpl;
+import gg.projecteden.crates.models.CrateAnimationImpl;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;
@@ -8,9 +8,9 @@ import org.bukkit.entity.Item;
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
-public class WeeklyWakkaCrateAnimation extends CrateAnimationImpl {
+public class WitherCrateAnimation extends CrateAnimationImpl {
 
-	public WeeklyWakkaCrateAnimation(ArmorStand baseEntity, BiFunction<Location, Consumer<Item>, Item> spawnItemHook) {
+	public WitherCrateAnimation(ArmorStand baseEntity, BiFunction<Location, Consumer<Item>, Item> spawnItemHook) {
 		super(baseEntity, spawnItemHook);
 	}
 

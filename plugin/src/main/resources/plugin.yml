@@ -3,3 +3,5 @@ version: '${version}'
 main: gg.projecteden.crates.CrateAnimations
 api-version: 1.19
 authors: [ Blast ]
+depend:
+  - CrateAnimationsAPI

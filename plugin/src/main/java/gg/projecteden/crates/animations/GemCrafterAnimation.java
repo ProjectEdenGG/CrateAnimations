@@ -1,8 +1,12 @@
-package crates.animations;
+package gg.projecteden.crates.animations;
 
 import com.destroystokyo.paper.ParticleBuilder;
-import crates.models.CrateAnimationImpl;
-import crates.util.*;
+import gg.projecteden.crates.models.CrateAnimationImpl;
+import gg.projecteden.crates.util.ItemUtils;
+import gg.projecteden.crates.util.RandomUtils;
+import gg.projecteden.crates.util.SoundUtils;
+import gg.projecteden.crates.util.SplinePath;
+import gg.projecteden.crates.util.VectorUtils;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Particle;
