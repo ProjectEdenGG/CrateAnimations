@@ -4,13 +4,13 @@ plugins {
 
 dependencies {
     compileOnly("io.papermc.paper:paper-api:1.19-R0.1-SNAPSHOT")
-    compileOnly(project(":api"))
+    compileOnly("gg.projecteden.crates:api:1.0.3-SNAPSHOT")
 }
 
 tasks {
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
+        //options.release.set(17)
         options.compilerArgs.add("-parameters")
     }
 
@@ -23,4 +23,8 @@ tasks {
             expand("version" to version)
         }
     }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }

@@ -14,7 +14,7 @@ java {
 tasks {
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        options.release.set(17)
+        //options.release.set(17)
         options.compilerArgs.add("-parameters")
     }
 
@@ -41,4 +41,8 @@ publishing {
             credentials(PasswordCredentials::class)
         }
     }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }

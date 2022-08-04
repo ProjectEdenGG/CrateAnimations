@@ -1,5 +1,5 @@
 name: CrateAnimationsAPI
 version: '${version}'
-main: gg.projecteden.crates.api.CratesAnimationsAPIPlugin
+main: gg.projecteden.crates.api.CrateAnimationsAPIPlugin
 api-version: 1.19
 authors: [ Blast ]

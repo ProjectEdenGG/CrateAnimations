@@ -1,14 +1,18 @@
 package gg.projecteden.crates.animations;
 
+import com.destroystokyo.paper.ParticleBuilder;
+import gg.projecteden.crates.CrateAnimations;
 import gg.projecteden.crates.models.CrateAnimationImpl;
 import gg.projecteden.crates.util.ItemUtils;
 import gg.projecteden.crates.util.LocationModifier.Direction;
+import gg.projecteden.crates.util.RandomUtils;
+import gg.projecteden.crates.util.SoundUtils;
 import gg.projecteden.crates.util.SplinePath;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.EulerAngle;
 
 import java.util.function.BiFunction;
@@ -21,7 +25,7 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13012);
 	private static final ItemStack KEY = ItemUtils.setModelData(new ItemStack(Material.PAPER), 10000);
 
-	private static final double TILT = Math.toRadians(5);
+	private static final double TILT = Math.toRadians(3);
 
 
 	private ArmorStand key;
@@ -49,8 +53,37 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 	}
 
 	@Override
+	public void stop() {
+		if (this.taskId != -1) {
+			CrateAnimations.getInstance().getServer().getScheduler().cancelTask(this.taskId);
+			this.completableFuture.complete(null);
+			this.completableFuture = null;
+			this.taskId = -1;
+			this.onStop();
+		}
+	}
+
+	@Override
 	protected void onStop() {
-		this.reset();
+		if (this.item != null)
+			this.item.remove();
+		SoundUtils.playSound(this.baseEntity.getEyeLocation(), Sound.BLOCK_CHEST_CLOSE, 1f, 1f);
+		new BukkitRunnable() {
+			int iter = 0;
+			@Override
+			public void run() {
+				if (iter < 5) { // Close lid on end
+					double x = Math.toDegrees(lid.getHeadPose().getX());
+					x += 20;
+					lid.setHeadPose(lid.getHeadPose().setX(Math.toRadians(x)));
+					iter++;
+				}
+				else {
+					this.cancel();
+					reset();
+				}
+			}
+		}.runTaskTimer(CrateAnimations.getInstance(), 0, 1);
 	}
 
 	@Override
@@ -75,6 +108,10 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 		if (iteration < this.keyPath.getPath().size() + (wait += 10))
 			return;
 
+		if (iteration == this.keyPath.getPath().size() + wait) {
+			SoundUtils.playSound(this.baseEntity.getEyeLocation(), Sound.BLOCK_CHEST_LOCKED, 1f, 1f);
+		}
+
 		if (iteration < this.keyPath.getPath().size() + (wait += 10)) { // Turn the key
 			double z = Math.toDegrees(this.key.getHeadPose().getZ());
 			if (z == 0)
@@ -83,13 +120,25 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 			this.key.setHeadPose(this.key.getHeadPose().setZ(Math.toRadians(z)));
 		}
 
-		if (iteration == this.keyPath.getPath().size() + (wait += 20)) // Remove key
+		if (iteration == this.keyPath.getPath().size() + (wait += 10)) // Remove key
 			this.key.remove();
 
 		if (iteration < this.keyPath.getPath().size() + (wait += 20)) // Small Wait
 			return;
 
-		if (iteration < this.keyPath.getPath().size() + wait) { // Shaking
+		if (iteration < this.keyPath.getPath().size() + (wait += 30)) { // Shaking
+			if (iteration % 2 == 0) {
+				for (int i = 0; i < 3; i++) {
+					Location particleLoc = this.baseEntity.getEyeLocation().clone();
+					particleLoc.add(RandomUtils.randomDouble(-.75f, .75f), RandomUtils.randomDouble(-.75f, .75f), RandomUtils.randomDouble(-.75f, .75f));
+					new ParticleBuilder(Particle.REDSTONE)
+							.color(Color.fromRGB(77, 55, 32))
+							.location(particleLoc)
+							.allPlayers()
+							.spawn();
+				}
+			}
+			SoundUtils.playSound(this.baseEntity.getEyeLocation(), Sound.BLOCK_SAND_HIT, .4f, .7f);
 			switch (iteration % 4) {
 				case 0 -> this.baseEntity.setHeadPose(this.baseEntity.getHeadPose().setX(TILT));
 				case 1 -> this.baseEntity.setHeadPose(this.baseEntity.getHeadPose().setX(-TILT));
@@ -98,7 +147,7 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 			}
 		}
 
-		if (iteration == this.keyPath.getPath().size() + (wait += 15)) { // Reset and setup for hinge
+		if (iteration == this.keyPath.getPath().size() + (wait)) { // Reset and setup for hinge
 			this.baseEntity.setHeadPose(EulerAngle.ZERO);
 			this.baseEntity.getEquipment().setHelmet(BASE);
 			Location loc = modify(this.baseEntity.getLocation()).backwards(.4).up(0.58).build();
@@ -107,21 +156,25 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 			});
 		}
 
-		if (iteration < this.keyPath.getPath().size() + (wait += 5)) // Small wait
+		if (iteration < this.keyPath.getPath().size() + (wait += 15)) // Small wait
 			return;
 
-		if (iteration == this.keyPath.getPath().size() + (wait += 15))
+		if (iteration == this.keyPath.getPath().size() + (wait += 5)) {
 			this.spawnItem(this.itemLoc.clone());
+			SoundUtils.playSound(this.baseEntity.getEyeLocation(), Sound.BLOCK_CHEST_OPEN, 1f, 1f);
+		}
 
-		if (iteration < this.keyPath.getPath().size() + (wait += 70)) { // Hinge lid
+		if (iteration < this.keyPath.getPath().size() + (wait += 10)) { // Hinge lid
 			double x = Math.toDegrees(this.lid.getHeadPose().getX());
 			if (x == 0)
 				x = 360;
 			x -= 100 / 15d; // Get from 360 -> 260 over 15 ticks
 			this.lid.setHeadPose(this.lid.getHeadPose().setX(Math.toRadians(x)));
 		}
+		if (iteration == this.keyPath.getPath().size() + wait)
+			SoundUtils.playSound(this.baseEntity.getEyeLocation(), Sound.BLOCK_NOTE_BLOCK_BELL, 1f, 1.6f);
 
-		if (iteration == this.keyPath.getPath().size() + wait) // Wait 2 seconds before stopping
+		if (iteration == this.keyPath.getPath().size() + (wait += 70)) // Wait 2 seconds before stopping
 			this.stop();
 	}
 

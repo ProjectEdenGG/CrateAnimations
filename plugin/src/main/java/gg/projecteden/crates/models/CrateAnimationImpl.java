@@ -22,8 +22,8 @@ public abstract class CrateAnimationImpl implements CrateAnimation {
 	private final BiFunction<Location, Consumer<Item>, Item> spawnItemHook;
 	protected Item item;
 
-	int taskId = -1;
-	CompletableFuture<Void> completableFuture;
+	protected int taskId = -1;
+	protected CompletableFuture<Void> completableFuture;
 	AtomicInteger iteration = new AtomicInteger(0);
 
 	public CrateAnimationImpl(ArmorStand baseEntity, BiFunction<Location, Consumer<Item>, Item> spawnItemHook) {
