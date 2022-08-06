@@ -1,13 +1,8 @@
 package gg.projecteden.crates;
 
-import gg.projecteden.crates.animations.GemCrafterAnimation;
-import gg.projecteden.crates.animations.MysteryCrateAnimation;
-import gg.projecteden.crates.animations.VoteCrateAnimation;
-import gg.projecteden.crates.animations.WeeklyWakkaCrateAnimation;
-import gg.projecteden.crates.animations.WitherCrateAnimation;
-import gg.projecteden.crates.api.CrateAnimationsAPI;
+import gg.projecteden.crates.animations.*;
 import gg.projecteden.crates.api.models.CrateAnimation;
-import gg.projecteden.crates.api.models.CrateAnimationType;
+import gg.projecteden.crates.api.models.CrateAnimationsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -47,13 +42,13 @@ public final class CrateAnimations extends JavaPlugin implements CrateAnimations
 	}
 
 	@Override
-	public CrateAnimation getAnimation(CrateAnimationType type, ArmorStand entity, BiFunction<Location, Consumer<Item>, Item> itemSpawnHook) {
-		return switch (type) {
-			case VOTE -> new VoteCrateAnimation(entity, itemSpawnHook);
-			case MYSTERY -> new MysteryCrateAnimation(entity, itemSpawnHook);
-			case WITHER -> new WitherCrateAnimation(entity, itemSpawnHook);
-			case WEEKLY_WAKKA -> new WeeklyWakkaCrateAnimation(entity, itemSpawnHook);
-			case GEM_CRAFTER -> new GemCrafterAnimation(entity, itemSpawnHook);
+	public CrateAnimation getAnimation(String type, ArmorStand entity, BiFunction<Location, Consumer<Item>, Item> itemSpawnHook) {
+		return switch (type.toUpperCase()) {
+			case "VOTE" -> new VoteCrateAnimation(entity, itemSpawnHook);
+			case "MYSTERY" -> new MysteryCrateAnimation(entity, itemSpawnHook);
+			case "WITHER" -> new WitherCrateAnimation(entity, itemSpawnHook);
+			case "WEEKLY_WAKKA" -> new WeeklyWakkaCrateAnimation(entity, itemSpawnHook);
+			case "GEM_CRAFTER" -> new GemCrafterAnimation(entity, itemSpawnHook);
 			default -> null;
 		};
 	}
