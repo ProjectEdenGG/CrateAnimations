@@ -60,6 +60,7 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 			this.completableFuture = null;
 			this.taskId = -1;
 			this.onStop();
+			CrateAnimations.ANIMATIONS.remove(this);
 		}
 	}
 

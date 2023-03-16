@@ -81,6 +81,7 @@ public abstract class CrateAnimationImpl implements CrateAnimation {
 			this.taskId = -1;
 			CrateAnimations.debug("Calling onStop");
 			this.onStop();
+			CrateAnimations.ANIMATIONS.remove(this);
 		}
 	}
 
