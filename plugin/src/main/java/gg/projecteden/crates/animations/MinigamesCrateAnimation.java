@@ -121,7 +121,7 @@ public class MinigamesCrateAnimation extends CrateAnimationImpl {
 			for (int i = 0; i < 4; i++) {
 				Location particleLoc = this.baseEntity.getLocation().clone().add(0, 1.8, 0);
 				particleLoc.add(RandomUtils.randomDouble(-1f, 1f), RandomUtils.randomDouble(-1f, 1f), RandomUtils.randomDouble(-1f, 1f));
-				new ParticleBuilder(Particle.REDSTONE)
+				new ParticleBuilder(Particle.DUST)
 						.location(particleLoc)
 						.allPlayers()
 						.data(new DustOptions(Color.fromRGB(RandomUtils.randomInt(0, 255), RandomUtils.randomInt(0, 255), RandomUtils.randomInt(0, 255)), 1))
@@ -162,7 +162,7 @@ public class MinigamesCrateAnimation extends CrateAnimationImpl {
 				double x = direction.getX() + RandomUtils.randomDouble(-.2, .2);
 				double y = direction.getY() + RandomUtils.randomDouble(-.2, .2);
 				double z = direction.getZ() + RandomUtils.randomDouble(-.2, .2);
-				new ParticleBuilder(Particle.ITEM_CRACK)
+				new ParticleBuilder(Particle.ITEM)
 						.location(location)
 						.allPlayers()
 						.data(new ItemStack(RandomUtils.randomElement(DYES)))

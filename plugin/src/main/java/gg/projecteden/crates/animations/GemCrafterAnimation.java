@@ -145,7 +145,7 @@ public class GemCrafterAnimation extends CrateAnimationImpl {
 			this.book.teleport(this.path.getPath().get(iteration).toLocation(this.center.getWorld()));
 			if (iteration % 10 == 0) {
 				Location loc = this.path.getPath().get(iteration).toLocation(this.center.getWorld()).clone().add(0, 1.5, 0);
-				new ParticleBuilder(Particle.ENCHANTMENT_TABLE)
+				new ParticleBuilder(Particle.ENCHANT)
 						.count(0)
 						.location(loc)
 						.allPlayers()
@@ -190,14 +190,14 @@ public class GemCrafterAnimation extends CrateAnimationImpl {
 			Location lantern = this.center.toCenterLocation().add(0, 3, 0);
 			lantern.getBlock().setType(Material.AIR);
 			for (int i = 0; i < 25; i++)
-				new ParticleBuilder(Particle.BLOCK_CRACK)
+				new ParticleBuilder(Particle.BLOCK)
 						.count(1)
 						.location(lantern)
 						.allPlayers()
 						.data(Material.WARPED_HYPHAE.createBlockData())
 						.spawn();
 			ItemStack gem = ItemUtils.setModelData( new ItemStack(Material.PAPER), 9000);
-			gem.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 1);
+			gem.addUnsafeEnchantment(Enchantment.POWER, 1);
 			this.spawnItem(lantern);
 			this.center.getBlock().setType(Material.BARRIER);
 			SoundUtils.playSound(this.center, Sound.BLOCK_ENCHANTMENT_TABLE_USE, 2f, 1f);

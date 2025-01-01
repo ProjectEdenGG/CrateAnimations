@@ -132,7 +132,7 @@ public class VoteCrateAnimation extends CrateAnimationImpl {
 				for (int i = 0; i < 3; i++) {
 					Location particleLoc = this.baseEntity.getEyeLocation().clone();
 					particleLoc.add(RandomUtils.randomDouble(-.75f, .75f), RandomUtils.randomDouble(-.75f, .75f), RandomUtils.randomDouble(-.75f, .75f));
-					new ParticleBuilder(Particle.REDSTONE)
+					new ParticleBuilder(Particle.DUST)
 							.color(Color.fromRGB(77, 55, 32))
 							.location(particleLoc)
 							.allPlayers()

@@ -4,17 +4,16 @@ plugins {
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.20.2-R0.1-SNAPSHOT")
+    compileOnly("io.papermc.paper:paper-api:1.21.3-R0.1-SNAPSHOT")
 }
 
 java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 tasks {
     compileJava {
         options.encoding = Charsets.UTF_8.name()
-        //options.release.set(17)
         options.compilerArgs.add("-parameters")
     }
 
@@ -41,8 +40,4 @@ publishing {
             credentials(PasswordCredentials::class)
         }
     }
-}
-
-java {
-    toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 }

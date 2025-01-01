@@ -141,7 +141,7 @@ public class WeeklyWakkaCrateAnimation extends CrateAnimationImpl {
 			double y = direction.getY() + RandomUtils.randomDouble(0, 0.5);
 			double z = direction.getZ() + RandomUtils.randomDouble(-.2, .2);
 
-			new ParticleBuilder(Particle.ITEM_CRACK)
+			new ParticleBuilder(Particle.ITEM)
 					.data(new ItemStack(Material.REDSTONE))
 					.extra(1)
 					.count(0)
