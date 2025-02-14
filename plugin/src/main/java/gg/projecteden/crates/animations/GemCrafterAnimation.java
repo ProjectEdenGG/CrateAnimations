@@ -126,7 +126,7 @@ public class GemCrafterAnimation extends CrateAnimationImpl {
 	private void summonStand() {
 		Location loc = this.path.getPath().get(0).toLocation(this.center.getWorld());
 		this.book = this.summonZero(loc, as -> {
-			as.getEquipment().setHelmet(ItemUtils.setModelData(new ItemStack(Material.PAPER), 13024)); // Enchantment Table Book Model
+			as.getEquipment().setHelmet(ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/gem_crafter/book")); // Enchantment Table Book Model
 			as.setHeadPose(new EulerAngle(0, Math.toRadians(this.direction.getYaw()), 0));
 		});
 	}
@@ -196,7 +196,7 @@ public class GemCrafterAnimation extends CrateAnimationImpl {
 						.allPlayers()
 						.data(Material.WARPED_HYPHAE.createBlockData())
 						.spawn();
-			ItemStack gem = ItemUtils.setModelData( new ItemStack(Material.PAPER), 9000);
+			ItemStack gem = ItemUtils.setModelData( new ItemStack(Material.PAPER), "misc/gems/sapphire");
 			gem.addUnsafeEnchantment(Enchantment.POWER, 1);
 			this.spawnItem(lantern);
 			this.center.getBlock().setType(Material.BARRIER);

@@ -28,9 +28,9 @@ import java.util.function.Consumer;
 
 public class MinigamesCrateAnimation extends CrateAnimationImpl {
 
-	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13028);
-	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13029);
-	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13030);
+	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/minigames/all");
+	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/minigames/base");
+	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/minigames/lid");
 	private static final double TILT1 = Math.toRadians(3);
 	static List<Material> DYES = new ArrayList<>() {{
 		this.add(Material.RED_DYE);

@@ -17,9 +17,9 @@ import java.util.function.Consumer;
 public class WeeklyWakkaCrateAnimation extends CrateAnimationImpl {
 
 
-	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13020);
-	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13021);
-	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13022);
+	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/wakka/all");
+	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/wakka/base");
+	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/wakka/lid");
 
 	private ArmorStand lid;
 

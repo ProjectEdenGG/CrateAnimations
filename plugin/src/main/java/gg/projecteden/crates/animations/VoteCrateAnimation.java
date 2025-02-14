@@ -20,10 +20,10 @@ import java.util.function.Consumer;
 
 public class VoteCrateAnimation extends CrateAnimationImpl {
 
-	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13010);
-	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13011);
-	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), 13012);
-	private static final ItemStack KEY = ItemUtils.setModelData(new ItemStack(Material.PAPER), 10000);
+	private static final ItemStack FULL = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/vote/all");
+	private static final ItemStack BASE = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/vote/base");
+	private static final ItemStack LID = ItemUtils.setModelData(new ItemStack(Material.PAPER), "ui/crates/vote/lid");
+	private static final ItemStack KEY = ItemUtils.setModelData(new ItemStack(Material.PAPER), "misc/crate_keys/vote");
 
 	private static final double TILT = Math.toRadians(3);
 
